@@ -15,5 +15,16 @@ class Recipe: Identifiable, Decodable {
     let image, description, prepTime, cookTime: String
     let totalTime: String
     let servings: Int
-    let ingredients, directions: [String]
+    let ingredients: [Ingredients]
+    let directions: [String]
+    let highlights: [String]
+}
+
+class Ingredients: Identifiable, Decodable {
+    
+    var id: UUID?
+    var name: String
+    var num: Int?
+    var denom: Int?
+    var unit: String?
 }
