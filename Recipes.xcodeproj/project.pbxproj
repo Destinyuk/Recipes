@@ -16,6 +16,8 @@
 		5E81AB3E29EFBA11006FC34F /* Recipe.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E81AB3D29EFBA11006FC34F /* Recipe.swift */; };
 		5E81AB4029EFBCF5006FC34F /* RecipeModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E81AB3F29EFBCF5006FC34F /* RecipeModel.swift */; };
 		5E81AB4229EFBEE7006FC34F /* DataService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E81AB4129EFBEE7006FC34F /* DataService.swift */; };
+		5EFEB49229F8EA2D006EB431 /* FeaturesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EFEB49129F8EA2D006EB431 /* FeaturesView.swift */; };
+		5EFEB49429F8EA59006EB431 /* RecipeTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EFEB49329F8EA59006EB431 /* RecipeTabView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -29,6 +31,8 @@
 		5E81AB3D29EFBA11006FC34F /* Recipe.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Recipe.swift; sourceTree = "<group>"; };
 		5E81AB3F29EFBCF5006FC34F /* RecipeModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeModel.swift; sourceTree = "<group>"; };
 		5E81AB4129EFBEE7006FC34F /* DataService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataService.swift; sourceTree = "<group>"; };
+		5EFEB49129F8EA2D006EB431 /* FeaturesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeaturesView.swift; sourceTree = "<group>"; };
+		5EFEB49329F8EA59006EB431 /* RecipeTabView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RecipeTabView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -100,6 +104,8 @@
 			isa = PBXGroup;
 			children = (
 				5E81AB2829EFAB3F006FC34F /* RecipeListView.swift */,
+				5EFEB49129F8EA2D006EB431 /* FeaturesView.swift */,
+				5EFEB49329F8EA59006EB431 /* RecipeTabView.swift */,
 				5E01ED9329F1039500DCFC42 /* RecipeDetailView.swift */,
 			);
 			path = Views;
@@ -193,12 +199,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5EFEB49429F8EA59006EB431 /* RecipeTabView.swift in Sources */,
 				5E81AB3E29EFBA11006FC34F /* Recipe.swift in Sources */,
 				5E01ED9429F1039500DCFC42 /* RecipeDetailView.swift in Sources */,
 				5E81AB4029EFBCF5006FC34F /* RecipeModel.swift in Sources */,
 				5E81AB2929EFAB3F006FC34F /* RecipeListView.swift in Sources */,
 				5E81AB2729EFAB3F006FC34F /* RecipesApp.swift in Sources */,
 				5E81AB4229EFBEE7006FC34F /* DataService.swift in Sources */,
+				5EFEB49229F8EA2D006EB431 /* FeaturesView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
