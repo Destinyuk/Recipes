@@ -12,23 +12,36 @@ struct RecipeListView: View {
     
     var body: some View {
         NavigationView {
-            List(model.recipes) { r in
+            
+            VStack {
+            Text("All Recipes")
+                    .bold()
+                    .font(.largeTitle)
                 
-                NavigationLink(destination: RecipeDetailView(recipe: r), label: {
-                    
-                    HStack {
-                        Image(r.image)
-                            .resizable()
-                            .scaledToFill()
-                            .frame(width: 40, height: 40, alignment: .center)
-                            .clipped()
-                            .cornerRadius(7)
-                        
-                        Text(r.name)
+                ScrollView {
+                    LazyVStack(alignment: .leading) {
+                        ForEach(model.recipes) { r in
+                            
+                            NavigationLink(destination: RecipeDetailView(recipe: r), label: {
+                                
+                                HStack {
+                                    Image(r.image)
+                                        .resizable()
+                                        .scaledToFill()
+                                        .frame(width: 40, height: 40, alignment: .center)
+                                        .clipped()
+                                        .cornerRadius(7)
+                                    
+                                    Text(r.name)
+                                        .foregroundColor(.brown)
+                                }
+                            })
+                        }
+                        .navigationBarHidden(true)
+                        .padding(.leading)
                     }
-                })
+                }
             }
-            .navigationTitle("All Recipes")
         }
     }
 }
@@ -36,5 +49,6 @@ struct RecipeListView: View {
 struct RecipeListView_Previews: PreviewProvider {
     static var previews: some View {
         RecipeListView()
+            .environmentObject(RecipeModel())
     }
 }
