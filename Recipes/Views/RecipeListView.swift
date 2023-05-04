@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct RecipeListView: View {
+    
    @ObservedObject var model = RecipeModel()
     
     var body: some View {
@@ -32,8 +33,14 @@ struct RecipeListView: View {
                                         .clipped()
                                         .cornerRadius(7)
                                     
-                                    Text(r.name)
-                                        .foregroundColor(.brown)
+                                    VStack(alignment: .leading) {
+                                        Text(r.name)
+                                            .foregroundColor(.black)
+                                            .bold()
+                                        
+                                        HighlightsView(highlights: r.highlights)
+                                            .foregroundColor(.brown)
+                                    }
                                 }
                             })
                         }

@@ -10,46 +10,51 @@ import SwiftUI
 struct FeaturesView: View {
     @EnvironmentObject var model: RecipeModel
     @State var showingDetailView = false
+    @State var tabSelectionIndex = 0
+    
+
     
     var body: some View {
         
+        let featuredRecipes = model.recipes.filter( { $0.featured })
+        
         VStack {
+            
             Text("Featured Recipes")
                 .bold()
                 .font(.largeTitle)
+            
             GeometryReader { geo in
-                TabView {
+                TabView(selection: $tabSelectionIndex) {
                     
-                    ForEach(0..<model.recipes.count) { index in
+                    ForEach(0..<featuredRecipes.count) { index in
                         
-                        if model.recipes[index].featured == true {
                             
                             Button(action: {
                                 self.showingDetailView = true
                             }, label: {
+                                
                                 ZStack {
                                     Rectangle()
                                         .foregroundColor(.white)
                                     
                                     VStack(spacing: 0) {
-                                        Image(model.recipes[index].image)
+                                        Image(featuredRecipes[index].image)
                                             .resizable()
                                             .aspectRatio(contentMode: .fill)
                                             .clipped()
-                                        Text(model.recipes[index].name)
+                                        Text(featuredRecipes[index].name)
                                             .padding(5)
                                     }
                                 }
                             })
-                            .sheet(isPresented: $showingDetailView, content: {
-                                RecipeDetailView(recipe: model.recipes[index])
-                            })
+                            .tag(index)
                             .buttonStyle(PlainButtonStyle())
                             .frame(width: geo.size.width - 40, height: geo.size.height - 100, alignment: .center)
                             .cornerRadius(20)
                             .shadow(color: .black, radius: 10, x: -5, y: 5)
                             
-                        }
+                        
 
                     }
                     
@@ -63,20 +68,26 @@ struct FeaturesView: View {
                 Text("Prep Time")
                     .font(.headline)
                     .bold()
-                Text("1 hour")
+                Text(model.recipes[tabSelectionIndex].prepTime)
+                
                 Text("Highlights")
                     .font(.headline)
                     .bold()
-                Text("Specials notes")
+                HighlightsView(highlights: model.recipes[tabSelectionIndex].highlights)
 
             }
             .padding([.leading, .bottom])
         }
+        .sheet(isPresented: $showingDetailView, content: {
+            RecipeDetailView(recipe: featuredRecipes[tabSelectionIndex])
+        })
     }
+    
 }
 
 struct FeaturesView_Previews: PreviewProvider {
     static var previews: some View {
         FeaturesView()
+            .environmentObject(RecipeModel())
     }
 }

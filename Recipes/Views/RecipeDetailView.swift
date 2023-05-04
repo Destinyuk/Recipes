@@ -24,8 +24,8 @@ struct RecipeDetailView: View {
                     .scaledToFit()
                     .cornerRadius(10)
                 
-               Spacer()
-                //MARK: -
+                //MARK: - Serving picker
+                
                 Picker("",selection: $servingSize) {
                     Text("2").tag(2)
                     Text("4").tag(4)
