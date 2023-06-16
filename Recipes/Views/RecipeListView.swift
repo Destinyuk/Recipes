@@ -9,40 +9,50 @@ import SwiftUI
 
 struct RecipeListView: View {
     
-   @ObservedObject var model = RecipeModel()
+    @EnvironmentObject var model: RecipeModel
+    
+    private var title: String {
+        if model.selectedCategory == nil || model.selectedCategory == Constants.defaultListFilter {
+            return "All recipes"
+        } else {
+            return model.selectedCategory!
+        }
+    }
     
     var body: some View {
         NavigationView {
             
             VStack {
-            Text("All Recipes")
+                Text(title)
                     .bold()
                     .font(.largeTitle)
                 
                 ScrollView {
                     LazyVStack(alignment: .leading) {
                         ForEach(model.recipes) { r in
-                            
-                            NavigationLink(destination: RecipeDetailView(recipe: r), label: {
+                            if model.selectedCategory == nil || model.selectedCategory == Constants.defaultListFilter || model.selectedCategory != nil && r.category == model.selectedCategory {
                                 
-                                HStack {
-                                    Image(r.image)
-                                        .resizable()
-                                        .scaledToFill()
-                                        .frame(width: 40, height: 40, alignment: .center)
-                                        .clipped()
-                                        .cornerRadius(7)
+                                NavigationLink(destination: RecipeDetailView(recipe: r), label: {
                                     
-                                    VStack(alignment: .leading) {
-                                        Text(r.name)
-                                            .foregroundColor(.black)
-                                            .bold()
+                                    HStack {
+                                        Image(r.image)
+                                            .resizable()
+                                            .scaledToFill()
+                                            .frame(width: 40, height: 40, alignment: .center)
+                                            .clipped()
+                                            .cornerRadius(7)
                                         
-                                        HighlightsView(highlights: r.highlights)
-                                            .foregroundColor(.brown)
+                                        VStack(alignment: .leading) {
+                                            Text(r.name)
+                                                .foregroundColor(.black)
+                                                .bold()
+                                            
+                                            HighlightsView(highlights: r.highlights)
+                                                .foregroundColor(.brown)
+                                        }
                                     }
-                                }
-                            })
+                                })
+                            }
                         }
                         .navigationBarHidden(true)
                         .padding(.leading)

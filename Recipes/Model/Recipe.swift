@@ -11,6 +11,7 @@ class Recipe: Identifiable, Decodable {
     
     var id: UUID?
     let name: String
+    var category:String
     let featured: Bool
     let image, description, prepTime, cookTime: String
     let totalTime: String

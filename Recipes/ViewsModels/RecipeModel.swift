@@ -10,10 +10,16 @@ import Foundation
 class RecipeModel: ObservableObject {
     
     @Published var recipes = [Recipe]()
+    @Published var categories = Set<String>()
+    @Published var selectedCategory: String?
     
     init() {
 
         self.recipes = DataService.loadData()
+        self.categories = Set(self.recipes.map{ r in
+            return r.category
+        })
+        self.categories.update(with: Constants.defaultListFilter)
     }
     
     static func getPortion(ingredient: Ingredients, recipeServing: Int, targetServings: Int) -> String {
